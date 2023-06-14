@@ -4,6 +4,10 @@ import { monitoraController } from "./controllers/monitoraController";
 
 const router = Router();
 
+router.get("/", async (req, res) => {
+  res.json({ msg: "teste" });
+});
+
 router.post("/previa", async (req, res) => {
   const body = req.body;
 

@@ -46,6 +46,8 @@ export class PreviaService {
           this.NomeDoProduto
         );
 
+        await this.driver.close();
+
         if (codMagalu === 1) {
           return {
             cod: 1,
@@ -68,6 +70,8 @@ export class PreviaService {
           this.LinhasPesquisa,
           this.NomeDoProduto
         );
+
+        await this.driver.close();
 
         if (codBuscape === 1) {
           return {
@@ -92,6 +96,8 @@ export class PreviaService {
           this.NomeDoProduto
         );
 
+        await this.driver.close();
+
         if (codAmericanas === 1) {
           return {
             cod: 1,
@@ -114,6 +120,8 @@ export class PreviaService {
           this.LinhasPesquisa,
           this.NomeDoProduto
         );
+
+        await this.driver.close();
 
         if (codAmazon === 1) {
           return {
@@ -138,6 +146,8 @@ export class PreviaService {
           this.NomeDoProduto
         );
 
+        await this.driver.close();
+
         if (codMercadoLivre === 1) {
           return {
             cod: 1,
@@ -151,6 +161,8 @@ export class PreviaService {
         };
 
       default:
+        await this.driver.close();
+
         return {
           cod: 0,
           msg: "Não temos este marketplace ainda",

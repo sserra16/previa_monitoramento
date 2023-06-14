@@ -11,7 +11,7 @@ async function PreviaMagalu(
   let retorno: PreviaRetorno = {
     cod: 0,
   };
-  retorno.listaPrevia = new Array(); 
+  retorno.listaPrevia = new Array();
 
   const url = "https://magazineluiza.com.br/";
 
@@ -24,16 +24,15 @@ async function PreviaMagalu(
   await sleep(4000);
 
   const precos = await driver.findElements(
-    By.className("sc-kDvujY jDmBNY sc-hGglLj bQqJoc")
+    By.className("sc-kpDqfm eCPtRw sc-hBtRBD fPPQXa")
   );
   if (precos.length === 0) {
-    console.log('chegou aqui')
     return { cod: 101, msg: "Nenhum produto encontrado" };
   }
 
-  const titulos = await driver.findElements(By.className("sc-hFVsQR hQYVAI"));
+  const titulos = await driver.findElements(By.className("sc-ZEldx llMBjh"));
   const links = await driver.findElements(
-    By.className("sc-hhOBVt jZChDm sc-izDtrv cIroYa sc-izDtrv cIroYa")
+    By.className("sc-kOPcWz dSFUBN sc-eWzREE jhhgth sc-eWzREE jhhgth")
   );
 
   for (let i = 0; i < quantidadeProdutos; i++) {
