@@ -4,13 +4,11 @@ import { PreviaRetorno } from "../../../types/PreviaRetorno";
 
 async function PreviaBuscape(
   driver: ThenableWebDriver,
-  quantidadeProdutos: number,
   nomeDoProduto: string
 ): Promise<PreviaRetorno> {
   let retorno: PreviaRetorno = {
     cod: 0,
   };
-  retorno.listaPrevia = new Array();
 
   const url = "https://buscape.com.br/";
 
@@ -43,16 +41,14 @@ async function PreviaBuscape(
     By.className("SearchCard_ProductCard_Inner__7JhKb")
   );
 
-  for (let i = 0; i < quantidadeProdutos; i++) {
-    const urlProduto = await links[i].getAttribute("href");
+  const urlProduto = await links[0].getAttribute("href");
 
-    retorno.listaPrevia.push({
-      descricao: await titulos[i].getText(),
-      preco: await precos[i].getText(),
-      urlProduto: urlProduto,
-      idMarketplace: 2,
-    });
-  }
+  retorno.previa = {
+    descricao: await titulos[0].getText(),
+    preco: await precos[0].getText(),
+    urlProduto: urlProduto,
+    idMarketplace: 2,
+  };
 
   retorno.cod = 1;
   return retorno;

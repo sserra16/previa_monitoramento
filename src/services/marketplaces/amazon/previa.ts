@@ -4,14 +4,11 @@ import { PreviaRetorno } from "../../../types/PreviaRetorno";
 
 async function previaAmazon(
   driver: ThenableWebDriver,
-  quantidadeProdutos: number,
   nomeDoProduto: string
 ): Promise<PreviaRetorno> {
   let retorno: PreviaRetorno = {
     cod: 0,
   };
-
-  retorno.listaPrevia = new Array();
 
   const url = "https://amazon.com.br/";
 
@@ -24,7 +21,6 @@ async function previaAmazon(
 
   const precos = await driver.findElements(By.className("a-price"));
   if (precos.length === 0) {
-    console.log("chegou aqui");
     return { cod: 101, msg: "Nenhum produto encontrado" };
   }
 
@@ -36,20 +32,18 @@ async function previaAmazon(
     By.className("a-link-normal s-no-outline")
   );
 
-  for (let i = 0; i < quantidadeProdutos; i++) {
-    const urlProduto = await links[i].getAttribute("href");
+  const urlProduto = await links[0].getAttribute("href");
 
-    const produto = await titulos[i].getText();
-    const precoInicial = await precos[i].getText();
-    const preco = precoInicial.replace("\n", ",");
+  const produto = await titulos[0].getText();
+  const precoInicial = await precos[0].getText();
+  const preco = precoInicial.replace("\n", ",");
 
-    retorno.listaPrevia.push({
-      descricao: produto,
-      preco,
-      urlProduto,
-      idMarketplace: 7,
-    });
-  }
+  retorno.previa = {
+    descricao: produto,
+    preco,
+    urlProduto,
+    idMarketplace: 7,
+  };
   retorno.cod = 1;
 
   return retorno;

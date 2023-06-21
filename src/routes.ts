@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 router.post("/previa", async (req, res) => {
   const body = req.body;
 
-  const previa = new PreviaController(body.idProduto, body.idMarketplace);
+  const previa = new PreviaController(body.idMarketplace, body.idPs);
 
   const result = await previa.get();
 

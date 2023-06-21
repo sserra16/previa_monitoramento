@@ -38,12 +38,6 @@ export class Monitora {
     return { cod: 1, marketplace };
   }
 
-  protected async getUrlProduto(): Promise<any> {
-    const { PrismaClient } = await import("@prisma/client");
-
-    const prisma = new PrismaClient();
-  }
-
   protected async getProduto(): Promise<any> {
     const { PrismaClient } = await import("@prisma/client");
 

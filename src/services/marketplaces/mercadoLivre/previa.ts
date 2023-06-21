@@ -4,14 +4,11 @@ import { PreviaRetorno } from "../../../types/PreviaRetorno";
 
 async function previaMercadoLivre(
   driver: ThenableWebDriver,
-  quantidadeProdutos: number,
   nomeDoProduto: string
 ): Promise<PreviaRetorno> {
   let retorno: PreviaRetorno = {
     cod: 0,
   };
-
-  retorno.listaPrevia = new Array();
 
   const url = "https://mercadolivre.com.br";
 
@@ -31,15 +28,13 @@ async function previaMercadoLivre(
 
   await sleep(1500);
 
-  for (let i = 0; i < quantidadeProdutos; i++) {
-    const urlProduto = await titulos[i].getAttribute("href");
+  const urlProduto = await titulos[0].getAttribute("href");
 
-    retorno.listaPrevia.push({
-      descricao: await titulos[i].getAttribute("title"),
-      urlProduto,
-      idMarketplace: 8,
-    });
-  }
+  retorno.previa = {
+    descricao: await titulos[0].getAttribute("title"),
+    urlProduto,
+    idMarketplace: 8,
+  };
 
   retorno.cod = 1;
 

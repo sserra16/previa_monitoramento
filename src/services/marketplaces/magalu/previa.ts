@@ -4,14 +4,12 @@ import { PreviaRetorno } from "../../../types/PreviaRetorno";
 
 async function PreviaMagalu(
   driver: ThenableWebDriver,
-  quantidadeProdutos: number,
   nomeDoProduto: string
 ): Promise<PreviaRetorno> {
   /* instanciando o retorno */
   let retorno: PreviaRetorno = {
     cod: 0,
   };
-  retorno.listaPrevia = new Array();
 
   const url = "https://magazineluiza.com.br/";
 
@@ -21,30 +19,29 @@ async function PreviaMagalu(
 
   await input.sendKeys(nomeDoProduto + Key.ENTER);
 
-  await sleep(4000);
+  await sleep(8000);
 
   const precos = await driver.findElements(
     By.className("sc-kpDqfm eCPtRw sc-hBtRBD fPPQXa")
   );
-  if (precos.length === 0) {
-    return { cod: 101, msg: "Nenhum produto encontrado" };
-  }
 
   const titulos = await driver.findElements(By.className("sc-ZEldx llMBjh"));
   const links = await driver.findElements(
     By.className("sc-kOPcWz dSFUBN sc-eWzREE jhhgth sc-eWzREE jhhgth")
   );
 
-  for (let i = 0; i < quantidadeProdutos; i++) {
-    const urlProduto = await links[i].getAttribute("href");
-
-    retorno.listaPrevia.push({
-      descricao: await titulos[i].getText(),
-      preco: await precos[i].getText(),
-      urlProduto,
-      idMarketplace: 1,
-    });
+  if (precos.length === 0 || titulos.length === 0 || links.length === 0) {
+    return { cod: 101, msg: "Nenhum produto encontrado" };
   }
+
+  const urlProduto = await links[0].getAttribute("href");
+
+  retorno.previa = {
+    descricao: await titulos[0].getText(),
+    preco: await precos[0].getText(),
+    urlProduto,
+    idMarketplace: 1,
+  };
 
   retorno.cod = 1;
   return retorno;

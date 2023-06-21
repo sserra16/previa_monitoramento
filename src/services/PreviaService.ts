@@ -8,13 +8,8 @@ import previaAmazon from "./marketplaces/amazon/previa";
 import previaMercadoLivre from "./marketplaces/mercadoLivre/previa";
 
 export class PreviaService {
-  constructor(
-    idMarketplace: number,
-    linhasPesquisa: number,
-    nomeDoProduto: string
-  ) {
+  constructor(idMarketplace: number, nomeDoProduto: string) {
     this.IdMarketplace = idMarketplace;
-    this.LinhasPesquisa = linhasPesquisa;
     this.NomeDoProduto = nomeDoProduto;
 
     const service = new chrome.ServiceBuilder(__dirname + "/chromedriver.exe");
@@ -30,28 +25,23 @@ export class PreviaService {
 
   private IdMarketplace: number;
   private driver: ThenableWebDriver;
-  private LinhasPesquisa: number;
   private NomeDoProduto: string;
 
   public async index(): Promise<PreviaRetorno> {
     switch (this.IdMarketplace) {
       case 1:
         const {
-          listaPrevia: listaMagalu,
+          previa: listaMagalu,
           cod: codMagalu,
           msg: msgMagalu,
-        } = await PreviaMagalu(
-          this.driver,
-          this.LinhasPesquisa,
-          this.NomeDoProduto
-        );
+        } = await PreviaMagalu(this.driver, this.NomeDoProduto);
 
         await this.driver.close();
 
         if (codMagalu === 1) {
           return {
             cod: 1,
-            listaPrevia: listaMagalu,
+            previa: listaMagalu,
           };
         }
 
@@ -63,20 +53,16 @@ export class PreviaService {
       case 4:
         const {
           cod: codBuscape,
-          listaPrevia: listaBuscape,
+          previa: listaBuscape,
           msg: msgBuscape,
-        } = await PreviaBuscape(
-          this.driver,
-          this.LinhasPesquisa,
-          this.NomeDoProduto
-        );
+        } = await PreviaBuscape(this.driver, this.NomeDoProduto);
 
         await this.driver.close();
 
         if (codBuscape === 1) {
           return {
             cod: 1,
-            listaPrevia: listaBuscape,
+            previa: listaBuscape,
           };
         }
 
@@ -89,19 +75,15 @@ export class PreviaService {
         const {
           cod: codAmericanas,
           msg: msgAmericanas,
-          listaPrevia: listaAmericanas,
-        } = await PreviaAmericanas(
-          this.driver,
-          this.LinhasPesquisa,
-          this.NomeDoProduto
-        );
+          previa: listaAmericanas,
+        } = await PreviaAmericanas(this.driver, this.NomeDoProduto);
 
         await this.driver.close();
 
         if (codAmericanas === 1) {
           return {
             cod: 1,
-            listaPrevia: listaAmericanas,
+            previa: listaAmericanas,
           };
         }
 
@@ -114,19 +96,15 @@ export class PreviaService {
         const {
           cod: codAmazon,
           msg: msgAmazon,
-          listaPrevia: listaAmazon,
-        } = await previaAmazon(
-          this.driver,
-          this.LinhasPesquisa,
-          this.NomeDoProduto
-        );
+          previa: listaAmazon,
+        } = await previaAmazon(this.driver, this.NomeDoProduto);
 
         await this.driver.close();
 
         if (codAmazon === 1) {
           return {
             cod: 1,
-            listaPrevia: listaAmazon,
+            previa: listaAmazon,
           };
         }
 
@@ -139,19 +117,15 @@ export class PreviaService {
         const {
           cod: codMercadoLivre,
           msg: msgAMercadoLivre,
-          listaPrevia: listaMercadoLivre,
-        } = await previaMercadoLivre(
-          this.driver,
-          this.LinhasPesquisa,
-          this.NomeDoProduto
-        );
+          previa: listaMercadoLivre,
+        } = await previaMercadoLivre(this.driver, this.NomeDoProduto);
 
         await this.driver.close();
 
         if (codMercadoLivre === 1) {
           return {
             cod: 1,
-            listaPrevia: listaMercadoLivre,
+            previa: listaMercadoLivre,
           };
         }
 
