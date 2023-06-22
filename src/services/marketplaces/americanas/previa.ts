@@ -48,7 +48,6 @@ async function PreviaAmericanas(
     descricao: await titulos[0].getText(),
     preco: await precos[0].getText(),
     urlProduto,
-    idMarketplace: 5,
   };
 
   retorno.cod = 1;

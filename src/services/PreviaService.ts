@@ -42,12 +42,14 @@ export class PreviaService {
           return {
             cod: 1,
             previa: listaMagalu,
+            idMarketplace: this.IdMarketplace,
           };
         }
 
         return {
           cod: codMagalu,
           msg: msgMagalu,
+          idMarketplace: this.IdMarketplace,
         };
 
       case 4:
@@ -63,12 +65,14 @@ export class PreviaService {
           return {
             cod: 1,
             previa: listaBuscape,
+            idMarketplace: this.IdMarketplace,
           };
         }
 
         return {
           cod: codBuscape,
           msg: msgBuscape,
+          idMarketplace: this.IdMarketplace,
         };
 
       case 5:
@@ -84,12 +88,14 @@ export class PreviaService {
           return {
             cod: 1,
             previa: listaAmericanas,
+            idMarketplace: this.IdMarketplace,
           };
         }
 
         return {
           cod: codAmericanas,
           msg: msgAmericanas,
+          idMarketplace: this.IdMarketplace,
         };
 
       case 7:
@@ -105,12 +111,14 @@ export class PreviaService {
           return {
             cod: 1,
             previa: listaAmazon,
+            idMarketplace: this.IdMarketplace,
           };
         }
 
         return {
           cod: codAmazon,
           msg: msgAmazon,
+          idMarketplace: this.IdMarketplace,
         };
 
       case 8:
@@ -126,12 +134,14 @@ export class PreviaService {
           return {
             cod: 1,
             previa: listaMercadoLivre,
+            idMarketplace: this.IdMarketplace,
           };
         }
 
         return {
           cod: codMercadoLivre,
           msg: msgAMercadoLivre,
+          idMarketplace: this.IdMarketplace,
         };
 
       default:
@@ -140,6 +150,7 @@ export class PreviaService {
         return {
           cod: 0,
           msg: "Não temos este marketplace ainda",
+          idMarketplace: this.IdMarketplace,
         };
     }
   }

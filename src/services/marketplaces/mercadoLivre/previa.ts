@@ -33,7 +33,6 @@ async function previaMercadoLivre(
   retorno.previa = {
     descricao: await titulos[0].getAttribute("title"),
     urlProduto,
-    idMarketplace: 8,
   };
 
   retorno.cod = 1;

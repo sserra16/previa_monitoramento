@@ -42,7 +42,6 @@ async function previaAmazon(
     descricao: produto,
     preco,
     urlProduto,
-    idMarketplace: 7,
   };
   retorno.cod = 1;
 

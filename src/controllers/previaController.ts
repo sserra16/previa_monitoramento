@@ -47,17 +47,22 @@ export class PreviaController extends Monitora {
 
     /* Tratando erros */
     if (produto.cod === 0) {
-      return { cod: 0, msg: produto.msg };
+      return { cod: 0, msg: produto.msg, idMarketplace: this.IdMarketplace };
     }
 
     if (produto.produto.length > 1) {
-      return { cod: 0, msg: "Mais de um produto encontrado." };
+      return {
+        cod: 0,
+        msg: "Mais de um produto encontrado.",
+        idMarketplace: this.IdMarketplace,
+      };
     }
 
     if (produto.produto.length == 0) {
       return {
         cod: 0,
         msg: "Nenhum produto encontrado na nossa base de dados",
+        idMarketplace: this.IdMarketplace,
       };
     }
 
@@ -78,9 +83,9 @@ export class PreviaController extends Monitora {
         previa?.urlProduto
       );
 
-      return { cod: 1, previa };
+      return { cod: 1, previa, idMarketplace: this.IdMarketplace };
     }
 
-    return { cod, msg };
+    return { cod, msg, idMarketplace: this.IdMarketplace };
   }
 }

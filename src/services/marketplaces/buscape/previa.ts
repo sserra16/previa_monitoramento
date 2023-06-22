@@ -47,7 +47,6 @@ async function PreviaBuscape(
     descricao: await titulos[0].getText(),
     preco: await precos[0].getText(),
     urlProduto: urlProduto,
-    idMarketplace: 2,
   };
 
   retorno.cod = 1;
