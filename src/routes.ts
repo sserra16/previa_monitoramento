@@ -11,7 +11,10 @@ router.get("/", async (req, res) => {
 router.post("/previa", async (req, res) => {
   const body = req.body;
 
-  const previa = new PreviaController(body.idMarketplace, body.idPs);
+  const previa = new PreviaController(
+    body.idMarketplace,
+    body.descricaoProduto
+  );
 
   const result = await previa.get();
 
@@ -23,8 +26,7 @@ router.post("/monitoramento", async (req, res) => {
 
   const monitoramento = new monitoraController(
     body.idMarketplace,
-    body.urlProduto,
-    body.idPs
+    body.urlProduto
   );
 
   const result = await monitoramento.get();

@@ -7,18 +7,16 @@ export async function monitoraAmazon(
 ): Promise<number> {
   await driver.get(url);
 
-  await sleep(1500);
+  await sleep(1500)
 
-  const preco = await driver.findElement(
-    By.className(
-      "a-price aok-align-center reinventPricePriceToPayMargin priceToPay"
-    )
-  );
-
+  const preco = await driver.findElement(By.className("a-price-whole"));
+  
+  
   let precoFinal = await preco.getText();
-
+  
   precoFinal = precoFinal.replace("R$", "");
   precoFinal = precoFinal.replace("\n", ".");
+  
 
   return Number(precoFinal);
 }
